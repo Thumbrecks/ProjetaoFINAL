@@ -6,9 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
-
+import jakarta.persistence.ForeignKey;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,8 +29,12 @@ public class Funcionario extends Pessoa{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long funcId ;
+    private Long funcId;
+
+    @ManyToOne
+    @JoinColumn(name = "agencia", foreignKey = @ForeignKey(name = "agencia_fkey"))
     private Agencia agencia;
+
     private String cargo;
     private Timestamp dataExclusao;
     private Boolean ativo;

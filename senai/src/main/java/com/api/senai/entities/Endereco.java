@@ -8,30 +8,27 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 import com.google.gson.Gson;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "enderecos")
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String cep;
     private String logradouro;
     private String numero;
     private String complemento;
     private String bairro;
     private String localidade; // cidade
     private String uf;
-
+    private String cep;
+    
     @OneToOne(mappedBy = "endereco")
     private Cliente cliente;
 
@@ -47,7 +44,9 @@ public class Endereco {
 
         try (
                 CloseableHttpClient httpClient = HttpClientBuilder.create().build();
-                CloseableHttpResponse response = httpClient.execute(request);) {
+                CloseableHttpResponse response = httpClient.execute(request);
+
+        ) {
             HttpEntity entity = response.getEntity();
             String result = EntityUtils.toString(entity);
             System.out.println(result);

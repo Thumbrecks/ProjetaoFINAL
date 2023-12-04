@@ -1,7 +1,7 @@
 package com.api.senai.entities;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -25,11 +26,11 @@ public class Conta {
     private String numeroConta;
     private String tipo;
     private BigDecimal saldo;
-    private Timestamp dataAbertura;
-    private Timestamp dataEncerr;
+    private LocalDateTime dataAbertura;
+    private LocalDateTime dataEncerr;
     private boolean ativo;
     
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "agencia", foreignKey = @ForeignKey(name = "agencia_fkey"))
     private Agencia agencia;
     

@@ -1,6 +1,6 @@
 package com.api.senai.entities;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -27,7 +27,7 @@ public class Cliente extends Pessoa {
     private String login;
     private String senha;
     private boolean ativo;
-    private Timestamp dataExclusao;
+    private LocalDateTime dataExclusao;
 
     @OneToOne(mappedBy = "cliente")
     private Conta conta;
